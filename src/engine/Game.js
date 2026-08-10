@@ -6,7 +6,7 @@ import Clock from "./Clock";
 import HUD from "../ui/HUD";
 
 import Player from "../player/Player";
-import World from "../world/World";
+import World from "../world/world";
 
 import MapMaker from "../editor/MapMaker";
 import EditorCamera from "../editor/EditorCamera";
