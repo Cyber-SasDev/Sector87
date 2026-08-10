@@ -42,9 +42,12 @@ export default class Player {
         );
 
         // Sistema de armas
-        this.weaponManager = new WeaponManager(
-            camera
-        );
+        this.weaponManager =
+    new WeaponManager(
+        camera,
+        colliders,
+        this.controls
+    );
 
     }
 

@@ -19,110 +19,156 @@ export default class MainMenu {
         this.element.id = "mainMenu";
 
         this.element.innerHTML = `
-            <div class="menu-background-grid"></div>
+            <div class="menu-background">
 
-            <div class="menu-screen menu-home">
-                <div class="menu-logo">
-                    <span class="menu-logo-small">
+                <div class="menu-grid"></div>
+                <div class="menu-glow"></div>
+                <div class="menu-scanlines"></div>
+
+            </div>
+
+            <div class="menu-content">
+
+                <div class="menu-brand">
+
+                    <div class="menu-studio">
                         CYBER-SAS STUDIOS
-                    </span>
+                    </div>
 
                     <h1>
                         SECTOR<span>87</span>
                     </h1>
 
-                    <p>
+                    <div class="menu-subtitle">
                         TACTICAL VOXEL COMBAT
-                    </p>
+                    </div>
+
+                    <div class="menu-status">
+                        <span></span>
+                        ONLINE
+                    </div>
+
+                </div>
+
+                <div class="menu-info">
+
+                    <div>
+                        SECTOR 87
+                    </div>
+
+                    <span>
+                        DEV BUILD 0.9.5
+                    </span>
+
                 </div>
 
                 <div class="menu-buttons">
+
                     <button
-                        class="menu-button primary"
+                        class="menu-button menu-play"
                         data-action="play"
                     >
-                        <span>▶</span>
-                        JUGAR
+                        <span class="button-icon">▶</span>
+
+                        <span class="button-text">
+                            <strong>PLAY NOW</strong>
+                            <small>ENTER SECTOR</small>
+                        </span>
                     </button>
 
                     <button
                         class="menu-button"
                         data-action="map-maker"
                     >
-                        <span>◆</span>
-                        MAP MAKER
+                        <span class="button-icon">◈</span>
+
+                        <span class="button-text">
+                            <strong>MAP MAKER</strong>
+                            <small>CREATE MAP</small>
+                        </span>
                     </button>
 
                     <button
                         class="menu-button"
                         data-action="skin-maker"
                     >
-                        <span>◉</span>
-                        SKIN MAKER
+                        <span class="button-icon">◆</span>
+
+                        <span class="button-text">
+                            <strong>SKIN MAKER</strong>
+                            <small>CUSTOMIZE</small>
+                        </span>
                     </button>
 
                     <button
                         class="menu-button"
                         data-action="settings"
                     >
-                        <span>⚙</span>
-                        AJUSTES
+                        <span class="button-icon">⚙</span>
+
+                        <span class="button-text">
+                            <strong>SETTINGS</strong>
+                            <small>CONFIGURATION</small>
+                        </span>
                     </button>
+
                 </div>
 
                 <div class="menu-footer">
-                    <span>SECTOR87 DEV BUILD</span>
-                    <span>v0.9.5</span>
-                </div>
-            </div>
 
-            <div class="menu-screen menu-placeholder">
-                <div class="placeholder-card">
-                    <span class="placeholder-label">
-                        SECTOR87 SYSTEM
+                    <span>
+                        SECTOR87
                     </span>
 
-                    <h2 id="placeholderTitle">
-                        PRÓXIMAMENTE
+                    <span>
+                        © CYBER-SAS STUDIOS
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="menu-panel">
+
+                <div class="panel-box">
+
+                    <div class="panel-label">
+                        SECTOR87 SYSTEM
+                    </div>
+
+                    <h2 id="panelTitle">
+                        SYSTEM
                     </h2>
 
-                    <p id="placeholderDescription">
-                        Sistema en construcción.
+                    <p id="panelDescription">
+                        System information.
                     </p>
 
                     <button
-                        class="menu-button primary"
+                        class="menu-button panel-back"
                         data-action="back"
                     >
-                        VOLVER
+                        ← BACK
                     </button>
+
                 </div>
+
             </div>
         `;
 
-        document.body.appendChild(
-            this.element
-        );
+        document.body.appendChild(this.element);
 
         this.homeScreen =
-            this.element.querySelector(
-                ".menu-home"
-            );
+            this.element.querySelector(".menu-content");
 
-        this.placeholderScreen =
-            this.element.querySelector(
-                ".menu-placeholder"
-            );
+        this.panel =
+            this.element.querySelector(".menu-panel");
 
-        this.placeholderTitle =
-            this.element.querySelector(
-                "#placeholderTitle"
-            );
+        this.panelTitle =
+            this.element.querySelector("#panelTitle");
 
-        this.placeholderDescription =
-            this.element.querySelector(
-                "#placeholderDescription"
-            );
+        this.panelDescription =
+            this.element.querySelector("#panelDescription");
 
         this.showHome();
 
@@ -135,9 +181,7 @@ export default class MainMenu {
             (event) => {
 
                 const button =
-                    event.target.closest(
-                        "[data-action]"
-                    );
+                    event.target.closest("[data-action]");
 
                 if (!button) return;
 
@@ -149,7 +193,6 @@ export default class MainMenu {
                     this.onPlay?.();
 
                     return;
-
                 }
 
                 if (action === "map-maker") {
@@ -157,29 +200,26 @@ export default class MainMenu {
                     this.onMapMaker?.();
 
                     return;
-
                 }
 
                 if (action === "skin-maker") {
 
-                    this.showPlaceholder(
+                    this.showPanel(
                         "SKIN MAKER",
-                        "Aquí construiremos el editor 3D de skins en la siguiente parte de la actualización."
+                        "The Sector87 skin editor will allow you to create and customize your own voxel character."
                     );
 
                     return;
-
                 }
 
                 if (action === "settings") {
 
-                    this.showPlaceholder(
-                        "AJUSTES",
-                        "Aquí añadiremos gráficos, sensibilidad, audio, controles y accesibilidad."
+                    this.showPanel(
+                        "SETTINGS",
+                        "Graphics, controls, sensitivity, audio and accessibility settings will be available here."
                     );
 
                     return;
-
                 }
 
                 if (action === "back") {
@@ -209,27 +249,18 @@ export default class MainMenu {
 
     showHome() {
 
-        this.homeScreen.style.display =
-            "flex";
-
-        this.placeholderScreen.style.display =
-            "none";
+        this.homeScreen.style.display = "flex";
+        this.panel.style.display = "none";
 
     }
 
-    showPlaceholder(title, description) {
+    showPanel(title, description) {
 
-        this.placeholderTitle.textContent =
-            title;
+        this.panelTitle.textContent = title;
+        this.panelDescription.textContent = description;
 
-        this.placeholderDescription.textContent =
-            description;
-
-        this.homeScreen.style.display =
-            "none";
-
-        this.placeholderScreen.style.display =
-            "flex";
+        this.homeScreen.style.display = "none";
+        this.panel.style.display = "flex";
 
     }
 

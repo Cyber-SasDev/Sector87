@@ -31,8 +31,8 @@ export default class Movement {
 
             }
 
-            // Slide
-            if (event.code === "KeyR" && !event.repeat) {
+            // Slide con C
+            if (event.code === "KeyC" && !event.repeat) {
 
                 this.state.slideRequested = true;
 

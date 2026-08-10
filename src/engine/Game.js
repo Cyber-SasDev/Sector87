@@ -27,6 +27,10 @@ export default class Game {
         this.cameraManager =
             new CameraManager();
 
+         this.sceneManager.scene.add(
+    this.cameraManager.camera
+);   
+
         this.clock =
             new Clock();
 

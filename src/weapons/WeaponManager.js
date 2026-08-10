@@ -4,13 +4,18 @@ export default class WeaponManager {
 
     constructor(camera) {
 
-        console.log("WeaponManager creado");
+        console.log(
+            "🔫 WeaponManager creado"
+        );
 
-        this.weapon = new Weapon(camera);
+        this.weapon =
+            new Weapon(camera);
 
     }
 
     update(delta) {
+
+        if (!this.weapon) return;
 
         this.weapon.update(delta);
 

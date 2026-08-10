@@ -83,6 +83,13 @@ export default class State {
 
      this.landingOffset = 0;
 
+     // =========================
+// VIDA DEL JUGADOR
+// =========================
+
+this.maxHealth = 100;
+this.health = 100;
+
     }
 
 }
